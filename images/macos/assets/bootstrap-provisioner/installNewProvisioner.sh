@@ -27,15 +27,18 @@ EOF
 
 chmod +x $PROVISIONER_ROOT/runprovisioner.sh
 
-aria2c \
-  --enable-color=false \
-  --file-allocation=none \
-  -d ${BOOTSTRAP_PATH} "${ProvisionerPackageUri}" >> ${BOOTSTRAP_PATH}/download.log
-
-aria2c \
-  --enable-color=false \
-  --file-allocation=none \
-  -d ${BOOTSTRAP_PATH} "${ProvisionerScriptUri}" >> ${BOOTSTRAP_PATH}/download.log
+files=( "${ProvisionerPackageUri}" "${ProvisionerScriptUri}" )
+for i in "${files[@]}"
+do
+  if [ -z "${BARE_IMAGE}" ]; then
+    aria2c \
+      --enable-color=false \
+      --file-allocation=none \
+      -d ${BOOTSTRAP_PATH} "${i}" >> ${BOOTSTRAP_PATH}/download.log
+  else
+    curl -vO --output-dir ${BOOTSTRAP_PATH} "${i}" >> ${BOOTSTRAP_PATH}/download.log 2>&1
+  fi
+done
 
 chmod +x ${BOOTSTRAP_PATH}/${ScriptName}
 
