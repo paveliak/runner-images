@@ -30,7 +30,7 @@ chmod +x $PROVISIONER_ROOT/runprovisioner.sh
 files=( "${ProvisionerPackageUri}" "${ProvisionerScriptUri}" )
 for i in "${files[@]}"
 do
-  if [ -z "${BARE_IMAGE}" ]; then
+  if command -v aria2c &> /dev/null; then
     aria2c \
       --enable-color=false \
       --file-allocation=none \
