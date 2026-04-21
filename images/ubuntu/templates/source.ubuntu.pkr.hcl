@@ -49,4 +49,8 @@ source "azure-arm" "image" {
 }
 
 source "null" "image" {
+  ssh_host = var.ssh_host
+  ssh_port = var.ssh_port
+  ssh_username = var.ssh_user
+  ssh_agent_auth = true
 }

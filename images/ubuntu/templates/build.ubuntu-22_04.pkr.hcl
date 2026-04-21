@@ -1,5 +1,5 @@
 build {
-  sources = ["source.azure-arm.image"]
+  sources = ["source.${var.builder_type}.image"]
   name = "ubuntu-22_04"
 
   provisioner "shell" {
@@ -249,6 +249,7 @@ build {
   }
 
   provisioner "shell" {
+    only = ["azure-arm.image"]
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline          = ["sleep 30", "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"]
   }

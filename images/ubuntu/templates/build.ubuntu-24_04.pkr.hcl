@@ -187,7 +187,6 @@ build {
   }
 
   provisioner "shell" {
-    except = ["null.image"]
     execute_command   = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     expect_disconnect = true
     inline            = ["echo 'Reboot VM'", "sudo reboot"]

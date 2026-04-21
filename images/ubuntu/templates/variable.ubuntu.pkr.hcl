@@ -174,3 +174,17 @@ variable "install_user" {
   type    = string
   default = "installer"
 }
+
+// Null builder variables
+variable "ssh_host" {
+  type    = string
+  default = ""
+}
+variable "ssh_port" {
+  type    = string
+  default = "22"
+}
+variable "ssh_user" {
+  type    = string
+  default = "ubuntu"
+}
