@@ -47,3 +47,6 @@ source "azure-arm" "image" {
     }
   }
 }
+
+source "null" "image" {
+}

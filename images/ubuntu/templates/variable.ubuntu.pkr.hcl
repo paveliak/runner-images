@@ -1,3 +1,12 @@
+variable "builder_type" {
+  type = string
+  default = "azure-arm"
+  validation {
+    condition = contains(["azure-arm", "null"], var.builder_type)
+    error_message = "The builder_type value must be one of [azure-arm, null]."
+  }
+}
+
 // Authentication related variables
 variable "client_cert_path" {
   type    = string
